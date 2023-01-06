@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Fig.ts</title>
+</head>
+<body>
+<style>
+  html, body {
+    font-family: "Courier New", 'serif';
+  }
+
+  ul {
+    list-style: square;
+  }
+
+  section {
+    padding: 2rem;
+  }
+</style>
+<h1>Fig.rs</h1>
+<h2>A figlet API</h2>
+<section>
+  <h3>How to</h3>
+  <ul>
+    <li>GET https://fig.ts -- this page</li>
+    <li>GET https://fig.ts/?text={your text} -- returns your text in standard figlet font</li>
+    <li>GET https://fig.ts/?text={your text}&options.font={font name} -- returns your text as a figlet in the font of your choix (fontdb, case sensitive)</li>
+  </ul>
+</section>
+<!--        <section>-->
+<!--        <h3>Tips</h3>-->
+<!--        <p>-->
+<!--        You can make an alias in bash/zsh such as:-->
+<!--        <pre>-->
+<!--        function fig() {-->
+<!--          local text=${1:-dev/stdin}-->
+<!--          local font=$1-->
+<!--          curl &#45;&#45;data '{"text":"{$text}", "font": "{$font}" https://fig.ts-->
+<!--        }-->
+<!--        </pre>-->
+<!--        So that you can use it like -->
+<!--        <pre>-->
+<!--        $ echo "Coucou" | fig-->
+<!--        </pre>-->
+<!--</p>-->
+<!--</section>-->
+<footer>
+  Made quickly by <a target="_blank" href="https://github.com/Sonicfury">johnnyBoy</a>
+</footer>
+</body>
+</html>

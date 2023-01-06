@@ -1,14 +1,25 @@
-#[macro_use] extern crate rocket;
+#[macro_use]
+extern crate rocket;
 
+use std::fs;
 use neofiglet::FIGfont;
+use rocket::response::content::RawHtml;
 
 #[derive(Debug, PartialEq, FromForm)]
 struct Options<'r> {
-    font: &'r str
+    font: &'r str,
 }
 
-#[get("/?<text>", rank=2)]
-fn index(text: &str ) -> String {
+#[get("/", rank = 3)]
+fn index() -> RawHtml<String> {
+    let html = fs::read_to_string("src/index.html").unwrap();
+    let resp = html.to_string();
+
+    return RawHtml(resp);
+}
+
+#[get("/?<text>", rank = 2)]
+fn fig_rs(text: &str) -> String {
     let font = FIGfont::standard().unwrap();
     let figure = font.convert(text);
 
@@ -16,7 +27,7 @@ fn index(text: &str ) -> String {
 }
 
 #[get("/?<text>&<options>")]
-fn index_with_font(text: &str, options: Options<'_>) -> String {
+fn fig_rs_with_font(text: &str, options: Options<'_>) -> String {
     let mut font_str = String::from("fonts/");
     font_str.push_str(options.font);
     font_str.push_str(".flf");
@@ -33,5 +44,5 @@ fn index_with_font(text: &str, options: Options<'_>) -> String {
 
 #[launch]
 fn rocket() -> _ {
-    rocket::build().mount("/", routes![index, index_with_font])
+    rocket::build().mount("/", routes![index, fig_rs, fig_rs_with_font])
 }
